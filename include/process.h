@@ -1,6 +1,6 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-void execute_command(char *command);
+void execute_command(char *input);
 
 #endif

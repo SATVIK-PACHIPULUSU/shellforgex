@@ -1,35 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>     // Provides fork(), execvp(), pid_t
-#include <sys/wait.h>   // Provides waitpid()
-#include "process.h"
+#include <string.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
-void execute_command(char *command)
+#include "process.h"
+#include "parser.h"
+#include "jobs.h"
+
+void execute_command(char *input)
 {
-    // execvp expects an array of strings, terminated by a NULL pointer.
-    // For now, we only handle a single command with NO arguments.
-    char *args[2];
-    args[0] = command;  // e.g., "ls"
-    args[1] = NULL;     // Tells execvp where the array ends
+    char *args[64];
+    int background = 0;
+    int len = strlen(input);
+
+    while (len > 0 && (input[len - 1] == ' ' || input[len - 1] == '\t'))
+    {
+        input[len - 1] = '\0';
+        len--;
+    }
+
+    if (len > 0 && input[len - 1] == '&')
+    {
+        background = 1;
+        input[len - 1] = '\0';
+    }
+
+    parse_command(input, args, 64);
+
+    if (args[0] == NULL)
+    {
+        return;
+    }
+
     pid_t pid = fork();
 
     if (pid == -1)
     {
-
-        perror("ShellForge: fork failed");
+        perror("ShellForge: fork");
+        return;
     }
-    else if (pid == 0)
+
+    if (pid == 0)
     {
-       
-        if (execvp(args[0], args) == -1)
-        {
-            perror("ShellForge");
-            exit(EXIT_FAILURE); // Terminate the broken child
-        }
+        execvp(args[0], args);
+        perror("ShellForge");
+        exit(EXIT_FAILURE);
+    }
+
+    if (background)
+    {
+        add_job(pid, input);
     }
     else
     {
-        int status;
-        waitpid(pid, &status, 0);
+        waitpid(pid, NULL, 0);
     }
 }
