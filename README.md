@@ -36,7 +36,6 @@ ShellForge X bridges this gap.
 * **Build/Debug:** GCC, Make, GDB, Valgrind
 
 ### Telemetry & Visualization (Upcoming)
-* **Frontend:** React, Tailwind CSS, React Flow, Chart.js
 * **Backend Bridge:** Python, FastAPI, WebSockets
 * **AI:** LLM API integration
 
