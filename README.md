@@ -1,4 +1,4 @@
-# ShellForge X 🛡️⚙️
+# ShellForge X 
 
 **AI-Powered Interactive Unix Shell with Real-Time Visualization of Operating System Concepts**
 
@@ -8,14 +8,14 @@ Unlike standard shells, ShellForge X will feature an **AI Assistance Layer** to 
 
 ---
 
-## 👥 Team (G-3)
+##  Team (G-3)
 * **Satvik Pachipulusu** — 2510030227
 * **Ramesh Siddardh** — 2510030303
 * **Padmavathi** — 2510030085
 
 ---
 
-## 💡 Project Philosophy
+##  Project Philosophy
 **A shell is not magic; it is a C program that communicates with the kernel.** 
 Current OS education forces students to choose between raw, text-based programming with poor visibility, or modern AI tools that hide how the operating system actually works. 
 
@@ -28,7 +28,7 @@ ShellForge X bridges this gap.
 
 ---
 
-## 🏗️ Architecture & Tech Stack
+##  Architecture & Tech Stack
 
 ### Core System (Current Focus)
 * **Language:** C17
@@ -41,7 +41,7 @@ ShellForge X bridges this gap.
 
 ---
 
-## 🚀 Build & Run Instructions
+##  Build & Run Instructions
 
 **Prerequisites:** Ubuntu Linux or WSL with `gcc` and `make` installed.
 
